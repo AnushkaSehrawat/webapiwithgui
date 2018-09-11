@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductTypesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TypeOfActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="rate" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NoOfPeopleRequired" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="LocationOfActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsBooked" Type="varchar" MaxLength="50" />
+    <Property Name="IsSaved" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Air">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fare" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="departureDate" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="departureTime" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="arrivalDate" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="arrivalTime" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="source" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="destination" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsBooked" Type="varchar" MaxLength="50" />
+    <Property Name="IsSaved" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="average" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="RegisterationState" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fuelType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsBooked" Type="varchar" MaxLength="50" />
+    <Property Name="IsSaved" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="noOfRooms" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="rating" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="HotelLocation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RatePerRoom" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="WifiAvailabilty" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsBooked" Type="varchar" MaxLength="50" />
+    <Property Name="IsSaved" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="ProductTypesModelStoreContainer">
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Air" EntityType="Self.Air" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

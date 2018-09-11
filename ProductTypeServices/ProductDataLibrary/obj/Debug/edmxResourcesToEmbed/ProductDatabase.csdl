@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductTypesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TypeOfActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="rate" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NoOfPeopleRequired" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="LocationOfActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsSaved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Air">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fare" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="departureDate" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="departureTime" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="arrivalDate" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="arrivalTime" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsSaved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="average" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="RegisterationState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gearType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsSaved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="noOfRooms" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="rating" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="HotelLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RatePerRoom" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="WifiAvailabilty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsSaved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="ProductTypesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Activities" EntityType="Self.Activity" />
+    <EntitySet Name="Airs" EntityType="Self.Air" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+  </EntityContainer>
+</Schema>
