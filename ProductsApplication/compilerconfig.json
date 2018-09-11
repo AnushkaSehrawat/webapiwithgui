@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "indexdecoration.css",
+    "inputFile": "indexdecoration.scss"
+  },
+  {
+    "outputFile": "UserProductsDecoration.css",
+    "inputFile": "UserProductsDecoration.scss"
+  },
+  {
+    "outputFile": "getdetailsdecoration.css",
+    "inputFile": "getdetailsdecoration.scss"
+  }
+]

@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="UserProductsDecoration.css" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Products</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><button onclick="getform(event,'hotel123')">Hotel</button></li>
+                <li><button onclick="getform(event,'car123')">Car</button></li>
+                <li><button onclick="getform(event,'activity123')">Activity</button></li>
+                <li><button onclick="getform(event,'air123')">Air</button></li>
+                <!--<li><button>Hotel</button></li>
+                <li><button>Car</button></li>
+                <li><button>Activity</button></li>
+                <li><button>Air</button></li>-->
+            </ul>
+        </nav>
+
+       
+
+    </header>
+
+    <!--<div>
+        <table>
+        <tr>
+            <td id="table"></td>
+            
+
+        </tr>
+</table>
+    </div>-->
+    <div class="forms" id="hotel123">
+    <form id="hotel">
+        Hotel Location: <input name="HotelLocation" ,type="text">
+        Rate Per Room: <input name="RatePerRoom" , type="text">
+        Wifi Avaialability : <input name="WifiAvailabilty" ,type="text">
+        name : <input name="name" ,type="text">
+        noOfRooms: <input name="noOfRooms" ,type="text">
+        rating: <input name="rating" ,type="text">
+
+    </form>
+    <button onclick="Post('hotel','Hotel')"> Post Hotel</button>
+   </div>
+    <div class="forms" id="car123">
+        <form id="car">
+            Registeration State: <input name="RegisterationState" ,type="text">
+            Average: <input name="average" , type="text">
+            Fuel Type : <input name="fuelType" ,type="text">
+            gear Type : <input name="gearType" ,type="text">
+            name: <input name="name" ,type="text">
+            price: <input name="price" ,type="text">
+
+        </form>
+        <button onclick="Post('car','Car')"> Post Car</button>
+    </div>
+    <div class="forms" id="activity123">
+        <form id="activity">
+
+            Activity Location: <input name="LocationOfActivity" ,type="text">
+            No of people required: <input name="NoOfPeopleRequired" , type="text">
+           Type of activity : <input name="TypeOfActivity" ,type="text">
+            rate : <input name="rate" ,type="text">
+            
+           
+        </form>
+        <button onclick="Post('activity','Activity')"> Post Activity</button>
+</div>
+    <div class="forms" id="air123">
+        <form id="air" >
+            Arrival Date: <input name="arrivalDate" ,type="text">
+            Arrival Time: <input name="arrivalTime" , type="text">
+            Departure date : <input name="departureDate" ,type="text">
+            Departure time : <input name="departureTime" ,type="text">
+            Destination: <input name="destination" ,type="text">
+            fare: <input name="fare" ,type="text">
+            name: <input name="name" ,type="text">
+            source: <input name="source" ,type="text">
+         
+        </form>
+        <button onclick="Post('air','Air')"> Post Air</button>
+        </div>
+
+    <button onclick="getHotelDetails()">Demo</button>
+
+        <script>
+            window.onload = function () {
+
+                var classobjects = document.getElementsByClassName("forms");
+                for (let index = 0; index < classobjects.length; index++) {
+                    classobjects[index].style.display = "none";
+                }
+
+            };
+
+
+
+            var hotelobject;
+            function getHotelDetails() {
+                var request = new XMLHttpRequest();
+                request.open('GET', 'http://localhost:63770/api/Hotel', true);
+                request.onload = function () {
+                    var data = JSON.parse(this.response);
+                    data.forEach(hotel => {
+
+                        console.log(hotel.name);
+                    });
+                }
+                request.send();
+            }
+
+            function Post(id,type) {
+                var request = new XMLHttpRequest();
+
+                var Details = document.getElementById(id).elements.length;
+                console.log(Details);
+                Productobject = {
+
+                };
+                for (let index = 0; index < Details; index++) {
+                    var x = document.getElementById(id).elements.item(index).getAttribute("name");
+                    console.log(x);
+                    Productobject[x] = document.getElementById(id).elements.item(index).value;
+
+
+
+                }
+                Productobject = JSON.stringify(Productobject);
+                request.open("POST", "http://localhost:63770/api/" + type, true);
+                request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                request.send(Productobject);
+                
+
+
+
+            }
+
+            function getform(event, name) {
+                var classobjects = document.getElementsByClassName("forms");
+                for (let index = 0; index < classobjects.length; index++) {
+                    classobjects[index].style.display = "none";
+                }
+                document.getElementById(name).style.display = "block";
+
+
+
+
+
+
+            }
+
+        </script>
+
+</body>
+</html>

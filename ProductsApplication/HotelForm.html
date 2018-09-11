@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        Hotel Location: <input name="HotelLocation" ,type="text">
+        Rate Per Room: <input name="RatePerRoom" , type="text">
+        Wifi Avaialability : <input name="WifiAvailabilty" ,type="text">
+        name : <input name="name" ,type="text">
+        noOfRooms: <input name="noOfRooms" ,type="text">
+        rating: <input name="rating" ,type="text">
+    </form>
+    <button onclick="CreateHotel()"> Post Hotel</button>
+
+    <script>
+        var request = new XMLHttpRequest();
+        var hotelobject;
+        var x, temp;
+        function getHotelDetails() {
+
+            request.open('GET', 'http://localhost:63770/api/Hotel' , true);
+            request.onload = function () {
+                var data = JSON.parse(this.response);
+                data.forEach(hotel => {
+
+                    console.log(hotel.name);
+                });
+            }
+            request.send();
+        }
+
+        function CreateHotel() {
+            var hotelDetails = document.getElementsByTagName("input");
+            hotelobject = {
+                // temp = document.getElementsByTagName("input")[index].getAttribute("name"),
+
+            };
+            for (let index = 0; index < hotelDetails.length; index++) {
+
+                x = document.getElementsByTagName("input")[index].getAttribute("name");
+                console.log(x);
+
+                hotelobject[x] = hotelDetails[index].value;
+
+            }
+            console.log(hotelobject);
+
+
+        }
+
+    </script>
+
+</body>
+</html>

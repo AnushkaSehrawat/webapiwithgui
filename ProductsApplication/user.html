@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="getdetailsdecoration.css" type="text/css">
+</head>
+<body>
+
+    <header>
+        <div class="header">
+            <h1>Products</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><button onclick="getDetails(event,'Hotel')">Hotel</button></li>
+                <li><button onclick="getDetails(event,'Car')">Car</button></li>
+                <li><button onclick="getDetails(event,'Activity')">Activity</button></li>
+                <li><button onclick="getDetails(event,'Air')">Air</button></li>
+              
+            </ul>
+        </nav>
+
+
+
+    </header>
+
+    <div id="ProductsData"></div>
+
+
+
+
+  <script>
+    function getDetails(event,productType) {
+        var request = new XMLHttpRequest();
+        var row, col;
+        var tables = document.getElementsByTagName("TABLE");
+        for (var i = tables.length - 1; i >= 0; i -= 1)
+            if (tables[i]) tables[i].parentNode.removeChild(tables[i]);
+        var tableElement = document.createElement("table");
+        request.open('GET', 'http://localhost:63770/api/' + productType, true);
+        request.onload = function () {
+          
+            var data = JSON.parse(this.response);
+            var keys = Object.keys(data[0]); // got first row
+            var values;
+             row = document.createElement("tr");
+             for (let index = 0; index < keys.length; index++) {
+                 col = document.createElement("td");
+                 var node = document.createTextNode(keys[index]);
+                 
+                 col.appendChild(node);
+                
+                 row.appendChild(col);
+                 
+                
+               
+             }
+             tableElement.appendChild(row);
+            
+                 for (let index = 0; index < data.length; index++) {
+                     keys = Object.keys(data[index]);
+                     values = Object.values(data[index]);
+                     row = document.createElement("tr");
+                     for (let i = 0; i < keys.length; i++) {
+                         col = document.createElement("td");
+                         var node = document.createTextNode(values[i]);
+                         col.appendChild(node);
+                         row.appendChild(col);
+                       
+                     }
+                     tableElement.appendChild(row);
+                     var bookbutton = document.createElement("button");
+                     var id = 'book' + [index + 1];
+                     bookbutton.setAttribute("id", id);
+                     var nodebutton = document.createTextNode("Book");
+                     bookbutton.appendChild(nodebutton);
+                     tableElement.appendChild(bookbutton);
+                     document.getElementById(id).addEventListener("click", function () { book(data[index].ProductId, productType ) });
+                     
+                     
+
+                     var savebutton = document.createElement("button");
+                     var id = "save" + [index + 1];
+                     savebutton.setAttribute("id", id);
+                     var nodebutton = document.createTextNode("Save");
+                     savebutton.appendChild(nodebutton);
+                     tableElement.appendChild(savebutton);
+                     document.getElementById(id).addEventListener("click", function () { save(data[index].ProductId, productType) });
+                 }
+             
+            data.forEach(hotel => {
+
+    console.log(hotel.name);
+    });
+  
+                       
+             
+        }
+
+        document.getElementById("ProductsData").appendChild(tableElement);
+        request.send();
+      }
+
+      function book(id, prodType) {
+          var request = new XMLHttpRequest();
+          var object = {
+              "id": id,
+              "Type": "book"
+          }
+          object = JSON.stringify(object);
+          request.open("PUT", "http://localhost:63770/api/" + prodType, true);
+              request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+              request.send(object);
+
+      }
+
+      function save(id, prodType) 
+      {
+      var request = new XMLHttpRequest();
+          var object = {
+              "id": id,
+              "Type": "save"
+          }
+
+          object = JSON.stringify(object);
+          request.open("PUT", "http://localhost:63770/api/" + prodType, true);
+          request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+          request.send(object);
+      }
+            
+
+    //data.forEach(hotel => {
+
+    //console.log(hotel.name);
+    //});
+    //}
+    //request.send();
+    //}
+  </script>
+
+</body>
+</html>
